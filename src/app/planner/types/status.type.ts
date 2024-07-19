@@ -1,4 +1,4 @@
-import { TColor } from '../../core/types/colors.type';
+import { TColor } from '../../shared/types/colors.type';
 
 export type TStatus = {
   _id: string;

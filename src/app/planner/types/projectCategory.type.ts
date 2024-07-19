@@ -1,4 +1,4 @@
-import { TColor } from '../../core/types/colors.type';
+import { TColor } from '../../shared/types/colors.type';
 import { TProjectSubCategory } from './projectSubCategory.type';
 
 export type TProjectCategory = {
@@ -6,4 +6,6 @@ export type TProjectCategory = {
   name: string;
   description: string;
   subCategories: TProjectSubCategory[];
+  createdAt: Date;
+  updatedAt: Date;
 } & TColor;

@@ -1,4 +1,4 @@
-import { TColor } from '../../core/types/colors.type';
+import { TColor } from '../../shared/types/colors.type';
 import { TStatus } from './status.type';
 
 export type TTask = {
@@ -14,4 +14,6 @@ export type TTask = {
   priority: number;
   impact: number;
   impactDescription: string;
+  createdAt: Date;
+  updatedAt: Date;
 } & TColor;

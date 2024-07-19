@@ -1,21 +1,23 @@
 import { TUser } from '../../user/types/user.type';
-import { TColor } from '../../core/types/colors.type';
+import { TColor } from '../../shared/types/colors.type';
 import { TProjectCategory } from './projectCategory.type';
 import { TProjectSubCategory } from './projectSubCategory.type';
 import { TStatus } from './status.type';
 import { TTask } from './task.type';
+import { TFeature } from './features.type';
+import { TRequeriment } from './requeriments.type';
 
 export type TProject = {
   _id: string;
   owners: TUser[];
   name: string;
   description: string;
-  categories: TProjectCategory[];
-  subCategories: TProjectSubCategory[];
+  category: TProjectCategory;
+  subCategory: TProjectSubCategory;
   startDate: Date;
   endDate: Date | undefined;
-  features: { name: string; description: string }[];
-  requeriments: { name: string; description: string; done: boolean }[];
+  features: TFeature[];
+  requeriments: TRequeriment[];
   approximateTimeProjection: number;
   status: TStatus;
   lastCheckStatus: Date;
@@ -23,4 +25,6 @@ export type TProject = {
   priority: number;
   impact: number;
   impactDescription: string;
+  createdAt: Date;
+  updatedAt: Date;
 } & TColor;
