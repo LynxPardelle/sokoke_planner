@@ -34,6 +34,7 @@
     "@ngrx/store": "^19.2.0",
     "@ngrx/store-devtools": "^19.2.0",
     "bootstrap": "^5.3.6",
+    "bootstrap-icons": "^1.13.1",
     "express": "^5.1.0",
     "ngx-angora-css": "^1.4.5",
     "rxjs": "^7.8.2",
