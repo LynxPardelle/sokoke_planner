@@ -1,5 +1,12 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
+<app-header [identity]="identity ? { 
+    _id: identity._id,
+    name: identity.name,
+    lastName: identity.lastName,
+    username: identity.username,
+     } : undefined"></app-header>
+<main class="ank-py-6rem">
+    <router-outlet></router-outlet>
+</main>
 @if(showFooter) {
 <app-footer (closeFooter)="showFooter = false"></app-footer>
 }

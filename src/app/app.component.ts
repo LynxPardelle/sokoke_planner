@@ -11,6 +11,8 @@ import { of } from 'rxjs';
 /* Components */
 import { HeaderComponent } from './core/components/layout/header/header.component';
 import { FooterComponent } from './core/components/layout/footer/footer.component';
+/* Types */
+import { TUser } from './user/types/user.type';
 /* Libraries */
 import { NgxAngoraService } from 'ngx-angora-css';
 
@@ -26,6 +28,7 @@ export class AppComponent implements OnInit, OnDestroy, OnChanges, DoCheck,
     AfterViewInit, AfterViewChecked {
     @Input() testInput: string = '';
     public colors: { [key: string]: string } = {
+        blank: '#F2EDE1',
         bgkoke: '#CD9965',
         textkoke: '#462F14',
         seckoke: '#A17246',
@@ -33,6 +36,7 @@ export class AppComponent implements OnInit, OnDestroy, OnChanges, DoCheck,
         trikoke: "#59767F",
     };
     public showFooter: boolean = true;
+    public identity: Omit<TUser, 'password' & 'verifyToken'> & Partial<Pick<TUser, 'name' & 'lastName' & 'username'>> | undefined;
 
     // Para demostración de takeUntilDestroyed
     private destroyRef = inject(DestroyRef);
