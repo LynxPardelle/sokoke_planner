@@ -24,11 +24,11 @@
         <!-- Right navigation items -->
         <div class="d-flex justify-content-start align-items-center ank-gap-1rem ank-pe-1rem">
             @if (!identity || !identity._id) {
-            <a class="text-decoration-none ank-text-bgkoke ank-fontWeight-500 ank-mx-2" href="#">
+            <a class="text-decoration-none ank-text-bgkoke ank-fontWeight-500 ank-mx-2" routerLink="/auth/login">
                 <i class="bi bi-box-arrow-in-right me-1"></i> Login
             </a>
-            <a class="btn ank-btnOutline-trikoke-bgkoke text-decoration-none ank-fontWeight-500 ank-mx-2" href="#">
-                <i class="bi bi-person-plus me-1"></i> Sign In
+            <a class="btn ank-btnOutline-trikoke-bgkoke text-decoration-none ank-fontWeight-500 ank-mx-2" routerLink="/auth/register">
+                <i class="bi bi-person-plus me-1"></i> Sign Up
             </a>
             } @else {
             <a class="text-decoration-none ank-text-bgkoke ank-fontWeight-500 ank-mx-2" href="#">

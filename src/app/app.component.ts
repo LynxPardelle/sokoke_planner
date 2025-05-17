@@ -2,12 +2,14 @@ import {
     Component, OnInit, OnDestroy, OnChanges, DoCheck,
     AfterContentInit, AfterContentChecked, AfterViewInit,
     AfterViewChecked, SimpleChanges, Input, EnvironmentInjector,
-    inject, DestroyRef, afterNextRender, afterRender
+    inject, DestroyRef, afterNextRender, afterRender, isDevMode
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 /* RXJS */
 import { of } from 'rxjs';
+/* Environment */
+import { environment } from '../environments/environment';
 /* Components */
 import { HeaderComponent } from './core/components/layout/header/header.component';
 import { FooterComponent } from './core/components/layout/footer/footer.component';
@@ -45,7 +47,9 @@ export class AppComponent implements OnInit, OnDestroy, OnChanges, DoCheck,
     constructor(
         private _ank: NgxAngoraService,
     ) {
-        // console.log('AppComponent constructor');
+        // Log environment info
+        console.log(`Application running in ${environment.production ? 'production' : 'development'} mode`);
+        console.log(`API endpoint: ${environment.apiUrl}`);
 
         // Ejemplo de uso de takeUntilDestroyed (Angular 16+)
         of('test').pipe(takeUntilDestroyed(this.destroyRef)).subscribe(

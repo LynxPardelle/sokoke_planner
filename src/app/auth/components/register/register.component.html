@@ -1,1 +1,166 @@
-<p>register works!</p>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card border-0 mat-elevation-z2 ank-bg-seckoke">
+        <div class="card-body p-4">
+          <div class="text-center mb-4">
+            <img src="./assets/images/sokoke-kitten.png" alt="Sokoke Planner" 
+                 class="ank-wmx-80px ank-h-auto rounded-circle mb-3">
+            <h2 class="ank-text-acckoke ank-fontWeight-500">Create Your Account</h2>
+            <p class="ank-text-textkoke">Join Sokoke Planner to organize your projects</p>
+          </div>
+          
+          @if(formError) {
+            <div class="alert alert-danger" role="alert">
+              {{ formError }}
+            </div>
+          }
+          
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="ank-g-3">
+            <!-- Name and Last Name row -->
+            <div class="row mb-3">
+              <div class="col-md-6 mb-3 mb-md-0">
+                <label for="name" class="form-label ank-text-textkoke">First Name</label>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  id="name" 
+                  formControlName="name"
+                  [ngClass]="{'is-invalid': registerForm.get('name')?.invalid && registerForm.get('name')?.touched}"
+                >
+                @if(registerForm.get('name')?.invalid && registerForm.get('name')?.touched) {
+                  <div class="invalid-feedback">
+                    First name is required and must be at least 2 characters
+                  </div>
+                }
+              </div>
+              <div class="col-md-6">
+                <label for="lastName" class="form-label ank-text-textkoke">Last Name</label>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  id="lastName" 
+                  formControlName="lastName"
+                  [ngClass]="{'is-invalid': registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched}"
+                >
+                @if(registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched) {
+                  <div class="invalid-feedback">
+                    Last name is required and must be at least 2 characters
+                  </div>
+                }
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+              <label for="email" class="form-label ank-text-textkoke">Email</label>
+              <input 
+                type="email" 
+                class="form-control" 
+                id="email" 
+                formControlName="email"
+                [ngClass]="{'is-invalid': registerForm.get('email')?.invalid && registerForm.get('email')?.touched}"
+              >
+              @if(registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
+                <div class="invalid-feedback">
+                  Please enter a valid email address
+                </div>
+              }
+            </div>
+
+            <!-- Username -->
+            <div class="mb-3">
+              <label for="username" class="form-label ank-text-textkoke">Username</label>
+              <input 
+                type="text" 
+                class="form-control" 
+                id="username" 
+                formControlName="username"
+                [ngClass]="{'is-invalid': registerForm.get('username')?.invalid && registerForm.get('username')?.touched}"
+              >
+              @if(registerForm.get('username')?.invalid && registerForm.get('username')?.touched) {
+                <div class="invalid-feedback">
+                  Username is required and must be at least 4 characters
+                </div>
+              }
+            </div>
+
+            <!-- Password -->
+            <div class="mb-3">
+              <label for="password" class="form-label ank-text-textkoke">Password</label>
+              <div class="input-group">
+                <input 
+                  [type]="passwordVisible ? 'text' : 'password'" 
+                  class="form-control" 
+                  id="password" 
+                  formControlName="password"
+                  [ngClass]="{'is-invalid': registerForm.get('password')?.invalid && registerForm.get('password')?.touched}"
+                >
+                <button 
+                  class="btn ank-btn-trikoke" 
+                  type="button"
+                  (click)="togglePasswordVisibility()"
+                >
+                  <i class="bi" [ngClass]="passwordVisible ? 'bi-eye-slash' : 'bi-eye'"></i>
+                </button>
+                @if(registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
+                  <div class="invalid-feedback">
+                    Password must be at least 8 characters
+                  </div>
+                }
+              </div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="mb-4">
+              <label for="confirmPassword" class="form-label ank-text-textkoke">Confirm Password</label>
+              <div class="input-group">
+                <input 
+                  [type]="confirmPasswordVisible ? 'text' : 'password'" 
+                  class="form-control" 
+                  id="confirmPassword" 
+                  formControlName="confirmPassword"
+                  [ngClass]="{'is-invalid': registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched}"
+                >
+                <button 
+                  class="btn ank-btn-trikoke" 
+                  type="button"
+                  (click)="toggleConfirmPasswordVisibility()"
+                >
+                  <i class="bi" [ngClass]="confirmPasswordVisible ? 'bi-eye-slash' : 'bi-eye'"></i>
+                </button>
+                @if(registerForm.get('confirmPassword')?.errors?.['passwordMismatch']) {
+                  <div class="invalid-feedback">
+                    Passwords do not match
+                  </div>
+                }
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid gap-2">
+              <button 
+                type="submit" 
+                class="btn ank-btn-acckoke ank-text-bgkoke btn-lg"
+                [disabled]="registerForm.invalid || isSubmitting"
+              >
+                @if(isSubmitting) {
+                  <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                  Creating account...
+                } @else {
+                  Create Account
+                }
+              </button>
+            </div>
+          </form>
+          
+          <div class="text-center mt-4">
+            <p class="mb-0 ank-text-textkoke">Already have an account? 
+              <a href="/auth/login" class="ank-text-acckoke text-decoration-none fw-bold">Sign in</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
