@@ -1,0 +1,452 @@
+<div class="container-fluid py-4">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="display-4 mb-4 text-center text-primary">
+        🎨 Generic Components Demo
+      </h1>
+      <p class="lead text-center text-muted mb-5">
+        Showcasing reusable components with NgxAngora integration and Sokoke theme
+      </p>
+    </div>
+  </div>
+
+  <!-- Theme Controls -->
+  <div class="row mb-5">
+    <div class="col-12">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h4 class="card-title mb-0">🎨 Theme Controls</h4>
+        </div>
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-md-3">
+              <generic-button
+                [config]="primaryButtonConfig"
+                text="Primary Theme"
+                (click)="applyPrimaryTheme(); $event.preventDefault(); $event.stopPropagation()">
+              </generic-button>
+            </div>
+            <div class="col-md-3">
+              <generic-button
+                [config]="secondaryButtonConfig"
+                text="Dark Theme"
+                (click)="applyDarkTheme(); $event.preventDefault(); $event.stopPropagation()">
+              </generic-button>
+            </div>
+            <div class="col-md-3">
+              <generic-button
+                [config]="successButtonConfig"
+                text="Success Theme"
+                (click)="applySuccessTheme(); $event.preventDefault(); $event.stopPropagation()">
+              </generic-button>
+            </div>
+            <div class="col-md-3">
+              <generic-button
+                [config]="resetButtonConfig"
+                text="Reset Theme"
+                (click)="resetTheme(); $event.preventDefault(); $event.stopPropagation()">
+              </generic-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Button Components Demo -->
+  <div class="row mb-5">
+    <div class="col-12">
+      <div class="card shadow-sm">
+        <div class="card-header bg-secondary text-white">
+          <h4 class="card-title mb-0">🔘 Button Components</h4>
+        </div>
+        <div class="card-body">
+          <div class="row g-3">
+            <!-- Button Types -->
+            <div class="col-12">
+              <h5 class="text-dark">Button Types & Variants</h5>
+              <div class="d-flex flex-wrap gap-2 mb-3">
+                <generic-button
+                  [config]="{ type: 'primary', variant: 'solid', size: 'md' }"
+                  text="Primary Solid"
+                  (click)="onButtonClick('primary-solid')">
+                </generic-button>
+
+                <generic-button
+                  [config]="{ type: 'primary', variant: 'outline', size: 'md' }"
+                  text="Primary Outline"
+                  (click)="onButtonClick('primary-outline')">
+                </generic-button>
+
+                <generic-button
+                  [config]="{ type: 'primary', variant: 'ghost', size: 'md' }"
+                  text="Primary Ghost"
+                  (click)="onButtonClick('primary-ghost')">
+                </generic-button>
+
+                <generic-button
+                  [config]="{ type: 'secondary', variant: 'solid', size: 'md' }"
+                  text="Secondary"
+                  (click)="onButtonClick('secondary')">
+                </generic-button>
+
+                <generic-button
+                  [config]="{ type: 'success', variant: 'solid', size: 'md' }"
+                  text="Success"
+                  (click)="onButtonClick('success')">
+                </generic-button>
+
+                <generic-button
+                  [config]="{ type: 'warning', variant: 'solid', size: 'md' }"
+                  text="Warning"
+                  (click)="onButtonClick('warning')">
+                </generic-button>
+
+                <generic-button
+                  [config]="{ type: 'danger', variant: 'solid', size: 'md' }"
+                  text="Danger"
+                  (click)="onButtonClick('danger')">
+                </generic-button>
+              </div>
+            </div>
+
+            <!-- Button Sizes -->
+            <div class="col-12">
+              <h5 class="text-dark">Button Sizes</h5>
+              <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+                <generic-button
+                  [config]="{ type: 'primary', size: 'xs' }"
+                  text="Extra Small"
+                  (click)="onButtonClick('xs')">
+                </generic-button>
+
+                <generic-button
+                  [config]="{ type: 'primary', size: 'sm' }"
+                  text="Small"
+                  (click)="onButtonClick('sm')">
+                </generic-button>
+
+                <generic-button
+                  [config]="{ type: 'primary', size: 'md' }"
+                  text="Medium"
+                  (click)="onButtonClick('md')">
+                </generic-button>
+
+                <generic-button
+                  [config]="{ type: 'primary', size: 'lg' }"
+                  text="Large"
+                  (click)="onButtonClick('lg')">
+                </generic-button>
+
+                <generic-button
+                  [config]="{ type: 'primary', size: 'xl' }"
+                  text="Extra Large"
+                  (click)="onButtonClick('xl')">
+                </generic-button>
+              </div>
+            </div>
+
+            <!-- Button Features -->
+            <div class="col-12">
+              <h5 class="text-dark">Button Features</h5>
+              <div class="d-flex flex-wrap gap-2 mb-3">
+                <generic-button
+                  [config]="{ type: 'primary', icon: 'fas fa-star', iconPosition: 'left' }"
+                  text="With Icon Left"
+                  (click)="onButtonClick('icon-left')">
+                </generic-button>
+
+                <generic-button
+                  [config]="{ type: 'primary', icon: 'fas fa-arrow-right', iconPosition: 'right' }"
+                  text="With Icon Right"
+                  (click)="onButtonClick('icon-right')">
+                </generic-button>
+
+                <generic-button
+                  [config]="{ type: 'primary', size: 'xs', cssClasses: ['ank-sqr-2rem'], icon: 'fas fa-heart', iconPosition: 'only', tooltip: 'Like this' }"
+                  (click)="onButtonClick('icon-only')">
+                </generic-button>
+
+                <generic-button
+                  [config]="{ type: 'primary', loading: buttonLoading }"
+                  text="Loading Button"
+                  (click)="toggleLoading()">
+                </generic-button>
+
+                <generic-button
+                  [config]="{ type: 'primary', disabled: true }"
+                  text="Disabled Button">
+                </generic-button>
+
+                <generic-button
+                  [config]="{ type: 'primary', pulse: true }"
+                  text="Pulse Animation"
+                  (click)="onButtonClick('pulse')">
+                </generic-button>
+
+                <generic-button
+                  [config]="{ type: 'primary', fullWidth: true }"
+                  text="Full Width Button"
+                  (click)="onButtonClick('full-width')">
+                </generic-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Components Demo -->
+  <div class="row mb-5">
+    <div class="col-12">
+      <div class="card shadow-sm">
+        <div class="card-header bg-accent text-white">
+          <h4 class="card-title mb-0">⏳ Loading Components</h4>
+        </div>
+        <div class="card-body">
+          <div class="row g-4">
+            <div class="col-md-6">
+              <h5 class="text-dark">Loading Types</h5>
+              <div class="d-flex flex-wrap gap-3 mb-3">
+                <generic-button
+                  [config]="{ type: 'primary', variant: 'outline', size: 'sm' }"
+                  text="Show Spinner"
+                  (click)="showLoadingType('spinner'); $event.preventDefault(); $event.stopPropagation()">
+                </generic-button>
+
+                <generic-button
+                  [config]="{ type: 'primary', variant: 'outline', size: 'sm' }"
+                  text="Show Dots"
+                  (click)="showLoadingType('dots'); $event.preventDefault(); $event.stopPropagation()">
+                </generic-button>
+
+                <generic-button
+                  [config]="{ type: 'primary', variant: 'outline', size: 'sm' }"
+                  text="Show Progress"
+                  (click)="showLoadingType('progress'); $event.preventDefault(); $event.stopPropagation()">
+                </generic-button>
+
+                <generic-button
+                  [config]="{ type: 'primary', variant: 'outline', size: 'sm' }"
+                  text="Show Pulse"
+                  (click)="showLoadingType('pulse'); $event.preventDefault(); $event.stopPropagation()">
+                </generic-button>
+
+                <generic-button
+                  [config]="{ type: 'primary', variant: 'outline', size: 'sm' }"
+                  text="Show Wave"
+                  (click)="showLoadingType('wave'); $event.preventDefault(); $event.stopPropagation()">
+                </generic-button>
+
+                <generic-button
+                  [config]="{ type: 'primary', variant: 'outline', size: 'sm' }"
+                  text="Show Skeleton"
+                  (click)="showLoadingType('skeleton'); $event.preventDefault(); $event.stopPropagation()">
+                </generic-button>
+
+                <generic-button
+                  [config]="{ type: 'danger', variant: 'outline', size: 'sm' }"
+                  text="Hide Loading"
+                  (click)="hideLoading(); $event.preventDefault(); $event.stopPropagation()">
+                </generic-button>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <h5 class="text-dark">Loading Preview</h5>
+              <div class="loading-preview">
+                <app-generic-loading
+                  [config]="currentLoadingConfig"
+                  [loading]="showLoading"
+                  [text]="loadingText">
+                </app-generic-loading>
+                
+                <div *ngIf="!showLoading" class="text-center text-muted">
+                  <p>Select a loading type to preview</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error Components Demo -->
+  <div class="row mb-5">
+    <div class="col-12">
+      <div class="card shadow-sm">
+        <div class="card-header bg-danger text-white">
+          <h4 class="card-title mb-0">🚨 Error Components</h4>
+        </div>
+        <div class="card-body">
+          <div class="row g-3 mb-4">
+            <div class="col-md-2">
+              <generic-button
+                [config]="{ type: 'danger', variant: 'outline', size: 'sm' }"
+                text="404 Error"
+                (click)="showErrorType('404'); $event.preventDefault(); $event.stopPropagation()">
+              </generic-button>
+            </div>
+            <div class="col-md-2">
+              <generic-button
+                [config]="{ type: 'danger', variant: 'outline', size: 'sm' }"
+                text="500 Error"
+                (click)="showErrorType('500'); $event.preventDefault(); $event.stopPropagation()">
+              </generic-button>
+            </div>
+            <div class="col-md-2">
+              <generic-button
+                [config]="{ type: 'danger', variant: 'outline', size: 'sm' }"
+                text="Network Error"
+                (click)="showErrorType('network'); $event.preventDefault(); $event.stopPropagation()">
+              </generic-button>
+            </div>
+            <div class="col-md-2">
+              <generic-button
+                [config]="{ type: 'danger', variant: 'outline', size: 'sm' }"
+                text="Validation Error"
+                (click)="showErrorType('validation'); $event.preventDefault(); $event.stopPropagation()">
+              </generic-button>
+            </div>
+            <div class="col-md-2">
+              <generic-button
+                [config]="{ type: 'danger', variant: 'outline', size: 'sm' }"
+                text="Permission Error"
+                (click)="showErrorType('permission'); $event.preventDefault(); $event.stopPropagation()">
+              </generic-button>
+            </div>
+            <div class="col-md-2">
+              <generic-button
+                [config]="{ type: 'success', variant: 'outline', size: 'sm' }"
+                text="Hide Error"
+                (click)="hideError(); $event.preventDefault(); $event.stopPropagation()">
+              </generic-button>
+            </div>
+          </div>
+
+          <div class="error-preview" *ngIf="showError">
+            <app-generic-error
+              [config]="currentErrorConfig"
+              [errorData]="currentError"
+              [showActions]="true"
+              (retry)="onErrorRetry()"
+              (home)="onErrorHome()"
+              (report)="onErrorReport($event)">
+            </app-generic-error>
+          </div>
+
+          <div *ngIf="!showError" class="text-center text-muted py-5">
+            <p>Select an error type to preview</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Components Demo -->
+  <div class="row mb-5">
+    <div class="col-12">
+      <div class="card shadow-sm">
+        <div class="card-header bg-info text-white">
+          <h4 class="card-title mb-0">🗖 Modal Components</h4>
+        </div>
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-md-3">
+              <generic-button
+                [config]="{ type: 'info', variant: 'solid' }"
+                text="Simple Modal"
+                (click)="showModal('simple')">
+              </generic-button>
+            </div>
+            <div class="col-md-3">
+              <generic-button
+                [config]="{ type: 'info', variant: 'solid' }"
+                text="Confirmation Modal"
+                (click)="showModal('confirmation')">
+              </generic-button>
+            </div>
+            <div class="col-md-3">
+              <generic-button
+                [config]="{ type: 'info', variant: 'solid' }"
+                text="Large Modal"
+                (click)="showModal('large')">
+              </generic-button>
+            </div>
+            <div class="col-md-3">
+              <generic-button
+                [config]="{ type: 'info', variant: 'solid' }"
+                text="Fullscreen Modal"
+                (click)="showModal('fullscreen')">
+              </generic-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notifications Demo -->
+  <div class="row mb-5">
+    <div class="col-12">
+      <div class="card shadow-sm">
+        <div class="card-header bg-warning text-dark">
+          <h4 class="card-title mb-0">🔔 Notifications Demo</h4>
+        </div>
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-md-3">
+              <generic-button
+                [config]="{ type: 'success', variant: 'solid' }"
+                text="Success Toast"
+                (click)="showSuccessToast()">
+              </generic-button>
+            </div>
+            <div class="col-md-3">
+              <generic-button
+                [config]="{ type: 'danger', variant: 'solid' }"
+                text="Error Toast"
+                (click)="showErrorToast()">
+              </generic-button>
+            </div>
+            <div class="col-md-3">
+              <generic-button
+                [config]="{ type: 'warning', variant: 'solid' }"
+                text="Warning Toast"
+                (click)="showWarningToast()">
+              </generic-button>
+            </div>
+            <div class="col-md-3">
+              <generic-button
+                [config]="{ type: 'info', variant: 'solid' }"
+                text="Info Toast"
+                (click)="showInfoToast()">
+              </generic-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Sample Modal -->
+<app-generic-modal
+  [config]="currentModalConfig"
+  [visible]="showModalDemo"
+  [title]="modalTitle"
+  [showConfirmButton]="showConfirmButton"
+  [showCancelButton]="showCancelButton"
+  [confirmText]="'Confirm Action'"
+  [cancelText]="'Cancel'"
+  (close)="hideModal()"
+  (confirm)="onModalConfirm()"
+  (cancel)="onModalCancel()">
+  
+  <div modal-body>
+    <p>{{ modalContent }}</p>
+    <p class="text-muted">This is a demonstration of the Generic Modal Component with NgxAngora integration.</p>
+  </div>
+</app-generic-modal>

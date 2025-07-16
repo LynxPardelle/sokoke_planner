@@ -1,0 +1,74 @@
+<div 
+  class="generic-loading"
+  [class.loading-overlay]="loadingConfig.overlay"
+  [class.loading-backdrop]="loadingConfig.backdrop"
+  [class.loading-fullscreen]="loadingConfig.fullScreen"
+  [class.loading-transparent]="loadingConfig.transparent"
+  [class.loading-blur]="loadingConfig.blur"
+  [ngClass]="getLoadingClasses()"
+  [ngStyle]="getLoadingStyles()"
+  *ngIf="loading">
+  
+  <!-- Spinner Type -->
+  <div *ngIf="loadingConfig.type === 'spinner'" 
+       class="loading-spinner" 
+       [ngClass]="getSpinnerClasses()">
+    <div class="spinner-border" 
+         [ngClass]="'spinner-' + (loadingConfig.size || 'md')"
+         role="status">
+      <span class="visually-hidden">{{ loadingConfig.text || 'Loading...' }}</span>
+    </div>
+  </div>
+
+  <!-- Dots Type -->
+  <div *ngIf="loadingConfig.type === 'dots'" 
+       class="loading-dots"
+       [ngClass]="getDotClasses()">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+
+  <!-- Progress Type -->
+  <div *ngIf="loadingConfig.type === 'progress'" 
+       class="loading-progress"
+       [ngClass]="getProgressClasses()">
+    <div class="progress">
+      <div class="progress-bar progress-bar-animated progress-bar-striped" 
+           [ngClass]="'bg-' + (loadingConfig.color || 'primary')"
+           style="width: 100%"></div>
+    </div>
+  </div>
+
+  <!-- Pulse Type -->
+  <div *ngIf="loadingConfig.type === 'pulse'" 
+       class="loading-pulse"
+       [ngClass]="getPulseClasses()">
+    <div class="pulse-circle"></div>
+  </div>
+
+  <!-- Wave Type -->
+  <div *ngIf="loadingConfig.type === 'wave'" 
+       class="loading-wave"
+       [ngClass]="getWaveClasses()">
+    <div class="wave-bar"></div>
+    <div class="wave-bar"></div>
+    <div class="wave-bar"></div>
+    <div class="wave-bar"></div>
+    <div class="wave-bar"></div>
+  </div>
+
+  <!-- Skeleton Type -->
+  <div *ngIf="loadingConfig.type === 'skeleton'" 
+       class="loading-skeleton"
+       [ngClass]="getSkeletonClasses()">
+    <div class="skeleton-line" *ngFor="let line of skeletonLines"></div>
+  </div>
+
+  <!-- Loading Text -->
+  <div *ngIf="loadingConfig.text || text" 
+       class="loading-text"
+       [ngClass]="getTextClasses()">
+    {{ loadingConfig.text || text }}
+  </div>
+</div>

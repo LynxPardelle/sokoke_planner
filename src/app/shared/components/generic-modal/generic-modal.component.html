@@ -1,0 +1,117 @@
+<div 
+  class="modal d-block"
+  [class.show]="visible"
+  [class.fade]="modalConfig.fade"
+  [ngClass]="getModalClasses()"
+  [ngStyle]="getModalStyles()"
+  *ngIf="visible"
+  #modalElement
+  tabindex="-1"
+  role="dialog"
+  [attr.aria-labelledby]="title ? 'modalTitle' : null"
+  aria-hidden="false">
+  
+  <!-- Modal Backdrop -->
+  <div 
+    class="modal-backdrop show"
+    [ngClass]="getBackdropClasses()"
+    (click)="onBackdropClick()">
+  </div>
+
+  <!-- Modal Dialog -->
+  <div 
+    class="modal-dialog"
+    [ngClass]="getDialogClasses()"
+    [ngStyle]="getDialogStyles()"
+    style="pointer-events: auto;"
+    (click)="$event.stopPropagation()">
+    
+    <div 
+      class="modal-content"
+      [ngClass]="getContentClasses()">
+      
+      <!-- Modal Header -->
+      <div 
+        class="modal-header"
+        [ngClass]="getHeaderClasses()"
+        *ngIf="modalConfig.header !== false">
+        
+        <h5 
+          class="modal-title" 
+          id="modalTitle"
+          [ngClass]="getTitleClasses()"
+          *ngIf="title">
+          {{ title }}
+        </h5>
+
+        <button 
+          type="button" 
+          class="btn-close" 
+          [ngClass]="getCloseButtonClasses()"
+          (click)="onClose()"
+          *ngIf="modalConfig.closeButton !== false && closable"
+          aria-label="Close">
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div 
+        class="modal-body"
+        [ngClass]="getBodyClasses()">
+        
+        <!-- Default Content Slot -->
+        <ng-content select="[modal-body]"></ng-content>
+        <ng-content></ng-content>
+        
+        <!-- Template Content -->
+        <ng-container 
+          *ngIf="bodyTemplate"
+          [ngTemplateOutlet]="bodyTemplate">
+        </ng-container>
+      </div>
+
+      <!-- Modal Footer -->
+      <div 
+        class="modal-footer"
+        [ngClass]="getFooterClasses()"
+        *ngIf="modalConfig.footer !== false && (showDefaultFooter || hasFooterContent)">
+        
+        <!-- Debug info (remove in production) -->
+        <!-- 
+        Debug: modalConfig.footer={{ modalConfig.footer }}
+        showDefaultFooter={{ showDefaultFooter }}
+        hasFooterContent={{ hasFooterContent }}
+        showConfirmButton={{ showConfirmButton }}
+        showCancelButton={{ showCancelButton }}
+        -->
+        
+        <!-- Custom Footer Content -->
+        <ng-content select="[modal-footer]"></ng-content>
+        
+        <!-- Default Footer Buttons -->
+        <div class="modal-actions" *ngIf="showDefaultFooter">
+          <button 
+            type="button" 
+            class="btn btn-secondary" 
+            [ngClass]="getCancelButtonClasses()"
+            (click)="onCancel()"
+            *ngIf="showCancelButton">
+            {{ cancelText || 'Cancel' }}
+          </button>
+          
+          <button 
+            type="button" 
+            class="btn btn-primary" 
+            [ngClass]="getConfirmButtonClasses()"
+            [disabled]="confirmDisabled"
+            (click)="onConfirm()"
+            *ngIf="showConfirmButton">
+            <span class="spinner-border spinner-border-sm me-2" 
+                  *ngIf="confirmLoading"></span>
+            {{ confirmText || 'Confirm' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,73 @@
+.toast-container {
+  z-index: 1080; // Higher than modals
+  max-width: 400px;
+  
+  // Ensure toasts don't interfere with page content
+  pointer-events: none;
+  
+  .toast {
+    pointer-events: auto; // Re-enable pointer events for actual toasts
+    margin-bottom: 0.75rem;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Position variants
+.toast-container.top-start {
+  top: 1rem !important;
+  left: 1rem !important;
+  right: auto !important;
+}
+
+.toast-container.top-center {
+  top: 1rem !important;
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%);
+}
+
+.toast-container.top-end {
+  top: 1rem !important;
+  right: 1rem !important;
+  left: auto !important;
+}
+
+.toast-container.bottom-start {
+  bottom: 1rem !important;
+  left: 1rem !important;
+  top: auto !important;
+  right: auto !important;
+}
+
+.toast-container.bottom-center {
+  bottom: 1rem !important;
+  left: 50% !important;
+  top: auto !important;
+  right: auto !important;
+  transform: translateX(-50%);
+}
+
+.toast-container.bottom-end {
+  bottom: 1rem !important;
+  right: 1rem !important;
+  top: auto !important;
+  left: auto !important;
+}
+
+// Responsive adjustments
+@media (max-width: 576px) {
+  .toast-container {
+    left: 0.5rem !important;
+    right: 0.5rem !important;
+    max-width: none;
+    
+    &.top-center,
+    &.bottom-center {
+      transform: none;
+      left: 0.5rem !important;
+    }
+  }
+}

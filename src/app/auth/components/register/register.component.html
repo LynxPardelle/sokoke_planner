@@ -1,13 +1,13 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
-      <div class="card border-0 mat-elevation-z2 ank-bg-seckoke">
+      <div class="card border-0 mat-elevation-z2 ank-bg-secondary">
         <div class="card-body p-4">
           <div class="text-center mb-4">
             <img src="./assets/images/sokoke-kitten.png" alt="Sokoke Planner" 
                  class="ank-wmx-80px ank-h-auto rounded-circle mb-3">
-            <h2 class="ank-text-acckoke ank-fontWeight-500">Create Your Account</h2>
-            <p class="ank-text-textkoke">Join Sokoke Planner to organize your projects</p>
+            <h2 class="ank-text-accent ank-fontWeight-500">Create Your Account</h2>
+            <p class="ank-text-dark">Join Sokoke Planner to organize your projects</p>
           </div>
           
           @if(formError) {
@@ -20,7 +20,7 @@
             <!-- Name and Last Name row -->
             <div class="row mb-3">
               <div class="col-md-6 mb-3 mb-md-0">
-                <label for="name" class="form-label ank-text-textkoke">First Name</label>
+                <label for="name" class="form-label ank-text-dark">First Name</label>
                 <input 
                   type="text" 
                   class="form-control" 
@@ -35,7 +35,7 @@
                 }
               </div>
               <div class="col-md-6">
-                <label for="lastName" class="form-label ank-text-textkoke">Last Name</label>
+                <label for="lastName" class="form-label ank-text-dark">Last Name</label>
                 <input 
                   type="text" 
                   class="form-control" 
@@ -53,7 +53,7 @@
 
             <!-- Email -->
             <div class="mb-3">
-              <label for="email" class="form-label ank-text-textkoke">Email</label>
+              <label for="email" class="form-label ank-text-dark">Email</label>
               <input 
                 type="email" 
                 class="form-control" 
@@ -70,7 +70,7 @@
 
             <!-- Username -->
             <div class="mb-3">
-              <label for="username" class="form-label ank-text-textkoke">Username</label>
+              <label for="username" class="form-label ank-text-dark">Username</label>
               <input 
                 type="text" 
                 class="form-control" 
@@ -87,7 +87,7 @@
 
             <!-- Password -->
             <div class="mb-3">
-              <label for="password" class="form-label ank-text-textkoke">Password</label>
+              <label for="password" class="form-label ank-text-dark">Password</label>
               <div class="input-group">
                 <input 
                   [type]="passwordVisible ? 'text' : 'password'" 
@@ -97,7 +97,7 @@
                   [ngClass]="{'is-invalid': registerForm.get('password')?.invalid && registerForm.get('password')?.touched}"
                 >
                 <button 
-                  class="btn ank-btn-trikoke" 
+                  class="btn ank-btn-info" 
                   type="button"
                   (click)="togglePasswordVisibility()"
                 >
@@ -113,7 +113,7 @@
 
             <!-- Confirm Password -->
             <div class="mb-4">
-              <label for="confirmPassword" class="form-label ank-text-textkoke">Confirm Password</label>
+              <label for="confirmPassword" class="form-label ank-text-dark">Confirm Password</label>
               <div class="input-group">
                 <input 
                   [type]="confirmPasswordVisible ? 'text' : 'password'" 
@@ -123,7 +123,7 @@
                   [ngClass]="{'is-invalid': registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched}"
                 >
                 <button 
-                  class="btn ank-btn-trikoke" 
+                  class="btn ank-btn-info" 
                   type="button"
                   (click)="toggleConfirmPasswordVisibility()"
                 >
@@ -141,7 +141,7 @@
             <div class="d-grid gap-2">
               <button 
                 type="submit" 
-                class="btn ank-btn-acckoke ank-text-bgkoke btn-lg"
+                class="btn ank-btn-accent ank-text-primary btn-lg"
                 [disabled]="registerForm.invalid || isSubmitting"
               >
                 @if(isSubmitting) {
@@ -155,8 +155,8 @@
           </form>
           
           <div class="text-center mt-4">
-            <p class="mb-0 ank-text-textkoke">Already have an account? 
-              <a href="/auth/login" class="ank-text-acckoke text-decoration-none fw-bold">Sign in</a>
+            <p class="mb-0 ank-text-dark">Already have an account? 
+              <a href="/auth/login" class="ank-text-accent text-decoration-none fw-bold">Sign in</a>
             </p>
           </div>
         </div>

@@ -1,0 +1,82 @@
+<div 
+  class="generic-error"
+  [ngClass]="getErrorClasses()"
+>
+  
+  <!-- Error Icon -->
+  <div class="error-icon" *ngIf="errorConfig.icon || getDefaultIcon()">
+    <i [class]="getIconClass()" [ngClass]="getIconClasses()"></i>
+  </div>
+
+  <!-- Error Content -->
+  <div class="error-content" [ngClass]="getContentClasses()">
+    <!-- Error Title -->
+    <h1 class="error-title" 
+        [ngClass]="getTitleClasses()" 
+        *ngIf="getErrorTitle()">
+      {{ getErrorTitle() }}
+    </h1>
+
+    <!-- Error Message -->
+    <p class="error-message" 
+       [ngClass]="getMessageClasses()" 
+       *ngIf="getErrorMessage()">
+      {{ getErrorMessage() }}
+    </p>
+
+    <!-- Error Details -->
+    <div class="error-details" 
+         [ngClass]="getDetailsClasses()" 
+         *ngIf="errorConfig.details && showDetails">
+      <button type="button" 
+              class="btn btn-link btn-sm" 
+              (click)="toggleDetails()"
+              [ngClass]="getToggleClasses()">
+        {{ showDetails ? 'Hide Details' : 'Show Details' }}
+      </button>
+      <div class="details-content" 
+           [ngClass]="getDetailsContentClasses()" 
+           *ngIf="showDetails">
+        <pre>{{ errorConfig.details }}</pre>
+      </div>
+    </div>
+
+    <!-- Error Actions -->
+    <div class="error-actions" 
+         [ngClass]="getActionsClasses()" 
+         *ngIf="showActions">
+      
+      <!-- Retry Button -->
+      <button type="button" 
+              class="btn btn-primary" 
+              [ngClass]="getRetryClasses()"
+              (click)="onRetry()" 
+              *ngIf="errorConfig.showRetry">
+        <i class="fas fa-redo-alt me-2" *ngIf="!retryLoading"></i>
+        <span class="spinner-border spinner-border-sm me-2" 
+              *ngIf="retryLoading"></span>
+        {{ errorConfig.retryText || 'Retry' }}
+      </button>
+
+      <!-- Home Button -->
+      <button type="button" 
+              class="btn btn-outline-secondary" 
+              [ngClass]="getHomeClasses()"
+              (click)="onHome()" 
+              *ngIf="errorConfig.showHome">
+        <i class="fas fa-home me-2"></i>
+        {{ errorConfig.homeText || 'Go Home' }}
+      </button>
+
+      <!-- Report Button -->
+      <button type="button" 
+              class="btn btn-outline-warning" 
+              [ngClass]="getReportClasses()"
+              (click)="onReport()" 
+              *ngIf="errorConfig.showReport">
+        <i class="fas fa-bug me-2"></i>
+        {{ errorConfig.reportText || 'Report Issue' }}
+      </button>
+    </div>
+  </div>
+</div>

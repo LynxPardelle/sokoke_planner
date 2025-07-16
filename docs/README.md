@@ -1,127 +1,137 @@
-# Frontend Documentation
+# 🐱 Sokoke Planner Frontend Documentation
 
-This folder contains comprehensive documentation for the Sokoke Planner Frontend application.
+Welcome to the Sokoke Planner Frontend documentation! This guide will help you get started quickly whether you're a new developer joining the team or contributing to the project.
+
+## � Quick Start for New Developers
+
+### 1. First Time Setup (15 minutes)
+```bash
+# Clone the repository
+git clone https://github.com/LynxPardelle/sokoke_planner.git
+cd sokoke_planner
+
+# Install dependencies
+npm install
+
+# Start development server
+npm start
+
+# In another terminal, start the API proxy
+cd ../lynx-bridge
+npm install && npm start
+```
+
+### 2. What You Need to Know
+- **Framework**: Angular 19+ with SSR
+- **Language**: TypeScript (strict mode)
+- **Styling**: Bootstrap + Custom SCSS + NgxAngora
+- **State**: NgRx for complex state management
+- **Testing**: Jasmine + Karma
+- **Architecture**: Component-based with generic reusable components
+
+### 3. Your First Task
+1. Read the [New Developer Onboarding Guide](./NEW_DEVELOPER_GUIDE.md)
+2. Try the [Hello World Tutorial](./HELLO_WORLD_TUTORIAL.md)
+3. Explore the [Generic Components Demo](../src/app/shared/components/generic-components-demo/)
 
 ## 📚 Documentation Index
 
-### Core Documentation
+### 🎯 Essential Reading (Start Here)
+| Priority | Document | Time | Description |
+|----------|----------|------|-------------|
+| **🔴 High** | [New Developer Guide](./NEW_DEVELOPER_GUIDE.md) | 30 min | Essential onboarding for new team members |
+| **🔴 High** | [Architecture Overview](./ARCHITECTURE_OVERVIEW.md) | 20 min | System design and component relationships |
+| **🟡 Medium** | [Development Workflow](./DEVELOPMENT_WORKFLOW.md) | 15 min | Git workflow, code review, deployment |
+| **🟡 Medium** | [Coding Standards](./CODING_STANDARDS.md) | 25 min | TypeScript, Angular, and project conventions |
 
+### 🛠️ Development References
+| Document | Purpose | When to Use |
+|----------|---------|-------------|
+| [API Integration Guide](./API_INTEGRATION_GUIDE.md) | HTTP services, authentication, error handling | Building new features |
+| [Generic Components Guide](./GENERIC_COMPONENTS_GUIDE.md) | Reusable UI components library | Creating consistent UI |
+| [Testing Guide](./TESTING_GUIDE.md) | Unit, integration, and e2e testing | Writing tests |
+| [Deployment Guide](./DEPLOYMENT_GUIDE.md) | Build, Docker, CI/CD processes | Production deployment |
+
+### 📋 Feature Development
 | Document | Description |
 |----------|-------------|
-| [DEVELOPER_GUIDE.md](./DEVELOPER_GUIDE.md) | Complete development guide with architecture, standards, and best practices |
-| [API_REFERENCE.md](./API_REFERENCE.md) | API integration reference with service interfaces and examples |
+| [Frontend Development Plan](../plan/FRONTEND_DEVELOPMENT_PLAN.md) | Complete roadmap and phases |
+| [Generic Components Plan](../plan/GENERIC_COMPONENTS_PLAN.md) | Component library implementation plan |
 
-### Development Plans
+### 📊 Project Status
+| Document | Purpose |
+|----------|---------|
+| [Implementation Status](./IMPLEMENTATION_STATUS.md) | Current progress and completed features |
+| [Known Issues](./KNOWN_ISSUES.md) | Bug tracking and workarounds |
 
-| Document | Location | Description |
-|----------|----------|-------------|
-| [FRONTEND_DEVELOPMENT_PLAN.md](../plan/FRONTEND_DEVELOPMENT_PLAN.md) | Main development roadmap and phases |
-| [GENERIC_COMPONENTS_PLAN.md](../plan/GENERIC_COMPONENTS_PLAN.md) | Comprehensive plan for reusable components |
+## 🏗️ Project Architecture Quick Reference
 
-## 🏗️ Architecture Overview
+```text
+Frontend (Angular 19+)
+├── Authentication & Guards
+├── Generic Component Library
+├── Feature Modules (Projects, Tasks, Users)
+├── State Management (NgRx)
+└── API Integration Layer
+                ↓
+        Lynx Bridge (Proxy)
+                ↓
+    Sokoke API (NestJS Backend)
+```
 
-The Sokoke Planner Frontend is built with:
+## 🎯 Common Development Tasks
 
-- **Framework**: Angular 19.2.10 with SSR support
-- **State Management**: NgRx (store, effects, signals)
-- **UI Framework**: Angular Material + Bootstrap 5.3.6
-- **Type System**: TypeScript with strict mode, using types instead of interfaces
-- **API Communication**: HTTP services through Lynx Bridge proxy
-- **Authentication**: JWT-based with refresh tokens
+### Adding a New Feature
+1. Check the [Development Plan](../plan/FRONTEND_DEVELOPMENT_PLAN.md) for planned implementation
+2. Follow the [Feature Development Workflow](./DEVELOPMENT_WORKFLOW.md#feature-development)
+3. Use [Generic Components](./GENERIC_COMPONENTS_GUIDE.md) for consistency
+4. Write tests following the [Testing Guide](./TESTING_GUIDE.md)
 
-## 🔧 Key Development Standards
+### Working with Generic Components
+1. Review [Generic Components Demo](../src/app/shared/components/generic-components-demo/)
+2. Check [Available Components](./GENERIC_COMPONENTS_GUIDE.md#available-components)
+3. Follow [Component Creation Guidelines](./GENERIC_COMPONENTS_GUIDE.md#creating-new-components)
 
-### Type System
-- **Use types** instead of interfaces (following backend standards)
-- Prefix all types with `T` (e.g., `TProject`, `TUser`)
-- Use utility types for DTOs (`Partial<T>`, `Omit<T>`, `Pick<T>`)
-
-### Naming Conventions
-- **Files**: kebab-case (`project-list.component.ts`)
-- **Classes**: PascalCase (`ProjectListComponent`)
-- **Variables/Functions**: camelCase (`loadProjects()`)
-- **Constants**: SCREAMING_SNAKE_CASE (`DEFAULT_PAGE_SIZE`)
-- **Generic Components**: `Generic` prefix (`GenericListComponent`)
-
-### Component Architecture
-- Extend `BaseGenericComponent` for reusable components
-- Use generic types for configuration (`TListConfig<T>`)
-- Implement OnPush change detection strategy
-- Follow reactive programming patterns with RxJS
-
-## 📖 Quick Start
-
-1. **Read the Developer Guide**
-   ```bash
-   # Open the comprehensive developer guide
-   ./docs/DEVELOPER_GUIDE.md
-   ```
-
-2. **Review API Reference**
-   ```bash
-   # Understand API integration patterns
-   ./docs/API_REFERENCE.md
-   ```
-
-3. **Check Development Plans**
-   ```bash
-   # Review the implementation roadmap
-   ./plan/FRONTEND_DEVELOPMENT_PLAN.md
-   ./plan/GENERIC_COMPONENTS_PLAN.md
-   ```
-
-4. **Set Up Environment**
-   ```bash
-   # Follow setup instructions in developer guide
-   npm install
-   ng serve
-   ```
-
-## 🎯 Development Workflow
-
-### 1. Phase 0: Generic Components Foundation
-Create reusable generic components that will be used throughout the application.
-
-### 2. Phase 1: Authentication & Core
-Set up authentication, interceptors, and base layout components.
-
-### 3. Phase 2-8: Feature Development
-Implement project management features using the generic component foundation.
-
-## 🧪 Testing Standards
-
-- **Unit Tests**: Component and service testing with Jasmine/Karma
-- **Integration Tests**: E2E testing with Cypress
-- **Type Safety**: 100% TypeScript strict mode compliance
-- **Coverage**: Minimum 90% test coverage for all components and services
-
-## 📊 Success Metrics
-
-- [ ] All 25+ generic components implemented and tested
-- [ ] 80% reduction in duplicate code across modules
-- [ ] 90% of CRUD operations use generic components
-- [ ] 95% test coverage for all components
-- [ ] Consistent user experience across all modules
+### Debugging Issues
+1. Check [Known Issues](./KNOWN_ISSUES.md) first
+2. Use the [Debugging Setup](./DEVELOPMENT_WORKFLOW.md#debugging)
+3. Review [Common Problems](./TROUBLESHOOTING.md)
 
 ## 🤝 Contributing
 
-Before contributing:
+### Quick Contribution Checklist
+- [ ] Branch named correctly (`feature/`, `fix/`, `docs/`)
+- [ ] Code follows [Coding Standards](./CODING_STANDARDS.md)
+- [ ] Tests written and passing
+- [ ] Documentation updated
+- [ ] PR template completed
 
-1. Read the [Developer Guide](./DEVELOPER_GUIDE.md)
-2. Follow the type system standards (types over interfaces)
-3. Use generic components where applicable
-4. Write comprehensive tests
-5. Update documentation as needed
+### Getting Help
+- **Code Questions**: Check existing documentation first
+- **Feature Planning**: Review [Development Plan](../plan/FRONTEND_DEVELOPMENT_PLAN.md)
+- **Component Usage**: See [Generic Components Guide](./GENERIC_COMPONENTS_GUIDE.md)
+- **API Integration**: Check [API Integration Guide](./API_INTEGRATION_GUIDE.md)
 
-## 📞 Support
+## 📈 Learning Path for New Developers
 
-For questions or issues:
+### Week 1: Foundation
+- [ ] Complete [New Developer Onboarding](./NEW_DEVELOPER_GUIDE.md)
+- [ ] Understand [Architecture Overview](./ARCHITECTURE_OVERVIEW.md)
+- [ ] Try [Hello World Tutorial](./HELLO_WORLD_TUTORIAL.md)
+- [ ] Explore existing generic components
 
-1. Check the documentation in this folder
-2. Review the development plans in `/plan`
-3. Create an issue in the repository
-4. Follow the contributing guidelines
+### Week 2: Development
+- [ ] Implement a small feature using generic components
+- [ ] Write unit tests for your feature
+- [ ] Submit your first PR
+- [ ] Review [Coding Standards](./CODING_STANDARDS.md) in detail
+
+### Week 3+: Advanced
+- [ ] Work on larger features from the development plan
+- [ ] Contribute to generic component library
+- [ ] Help improve documentation
+- [ ] Mentor other new developers
 
 ---
 
-Last updated: June 20, 2025
+**Next Steps**: Start with the [New Developer Onboarding Guide](./NEW_DEVELOPER_GUIDE.md) 🚀

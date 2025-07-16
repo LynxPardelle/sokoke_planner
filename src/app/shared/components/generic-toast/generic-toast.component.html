@@ -1,0 +1,49 @@
+<div 
+  class="toast"
+  [ngClass]="getToastClasses()"
+  role="alert" 
+  aria-live="assertive" 
+  aria-atomic="true">
+  
+  <div class="toast-header" *ngIf="toast.title">
+    <i [ngClass]="getIconClasses()" *ngIf="toast.icon"></i>
+    <strong class="me-auto ms-2">{{ toast.title }}</strong>
+    <button 
+      type="button" 
+      class="btn-close" 
+      (click)="onDismiss()"
+      aria-label="Close">
+    </button>
+  </div>
+  
+  <div class="toast-body">
+    <div class="d-flex align-items-center" *ngIf="!toast.title">
+      <i [ngClass]="getIconClasses()" *ngIf="toast.icon"></i>
+      <div class="toast-content ms-2 flex-grow-1">
+        {{ toast.message }}
+      </div>
+      <button 
+        type="button" 
+        class="btn-close ms-2" 
+        (click)="onDismiss()"
+        aria-label="Close">
+      </button>
+    </div>
+    
+    <div *ngIf="toast.title">
+      {{ toast.message }}
+    </div>
+    
+    <!-- Toast Actions -->
+    <div class="toast-actions mt-2" *ngIf="toast.actions && toast.actions.length > 0">
+      <button 
+        *ngFor="let action of toast.actions"
+        type="button"
+        class="btn btn-sm"
+        [ngClass]="'btn-' + (action.color || 'outline-primary')"
+        (click)="onActionClick(action)">
+        {{ action.label }}
+      </button>
+    </div>
+  </div>
+</div>

@@ -9,10 +9,58 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <link rel="stylesheet" href="./assets/css/angora-styles.css" />
+  
+  <!-- Chrome Extension Error Suppressor Script - Must run before Angular -->
+  <script>
+    (function() {
+      // Early Chrome extension error suppression
+      if (typeof window !== 'undefined') {
+        // Suppress runtime.lastError messages
+        const originalConsoleError = console.error;
+        const originalConsoleWarn = console.warn;
+        
+        console.error = function(...args) {
+          const message = args.join(' ').toLowerCase();
+          if (message.includes('unchecked runtime.lasterror') || 
+              message.includes('message port closed') ||
+              message.includes('chrome-extension')) {
+            console.debug('Chrome extension error suppressed (early):', ...args);
+            return;
+          }
+          originalConsoleError.apply(console, args);
+        };
+        
+        console.warn = function(...args) {
+          const message = args.join(' ').toLowerCase();
+          if (message.includes('unchecked runtime.lasterror') || 
+              message.includes('message port closed') ||
+              message.includes('chrome-extension')) {
+            console.debug('Chrome extension warning suppressed (early):', ...args);
+            return;
+          }
+          originalConsoleWarn.apply(console, args);
+        };
+        
+        // Prevent unhandled promise rejections from Chrome extensions
+        window.addEventListener('unhandledrejection', function(event) {
+          const error = event.reason;
+          const message = (error && error.message) ? error.message.toLowerCase() : '';
+          
+          if (message.includes('message port closed') || 
+              message.includes('runtime.lasterror') ||
+              message.includes('chrome-extension')) {
+            console.debug('Chrome extension promise rejection suppressed:', error);
+            event.preventDefault();
+          }
+        });
+      }
+    })();
+  </script>
 </head>
 
-<body class="ank-bg-bgkoke__OPA__0_5 ank-text-texkoke">
+<body class="ank-bg-primary__OPA__0_5 ank-text-dark">
   <app-root></app-root>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"

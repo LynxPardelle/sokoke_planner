@@ -1,0 +1,68 @@
+<button
+  [type]="buttonType"
+  [ngClass]="cssClasses"
+  [disabled]="isDisabled"
+  [attr.aria-label]="buttonConfig.tooltip || text"
+  [attr.title]="buttonConfig.tooltip"
+  [attr.data-bs-toggle]="buttonConfig.tooltip ? 'tooltip' : null"
+  [attr.data-bs-placement]="buttonConfig.tooltipPosition || 'top'"
+  (focus)="onFocus()"
+  (blur)="onBlur()"
+  (mousedown)="onMouseDown()"
+  (mouseup)="onMouseUp()"
+  [id]="randomId"
+>
+  <!-- Loading Spinner -->
+  @if(loading || buttonConfig.loading) {
+  <span
+    class="spinner-border spinner-border-sm spinner-{{
+      this.buttonConfig.spinnerSize || 'xs'
+    }} ank-me-0_5rem"
+    role="status"
+    aria-hidden="true"
+  >
+  </span>
+  }
+
+  <!-- Left Icon -->
+  @if(buttonConfig.icon && buttonConfig.iconPosition === 'left' && !loading &&
+  !buttonConfig.loading){
+  <i
+    class="ank-me-0_5rem {{ buttonConfig.icon }} icon-{{
+      this.buttonConfig.size
+    }}"
+  >
+  </i>
+  }
+
+  <!-- Button Text -->
+  @if(text) {
+  <span class="text-{{ this.buttonConfig.size }}">
+    {{ text }}
+    <ng-content></ng-content>
+  </span>
+  }
+
+  <!-- Right Icon -->
+  @if(buttonConfig.icon && buttonConfig.iconPosition === 'right' && !loading &&
+  !buttonConfig.loading){
+  <i
+    class="ank-ms-0_5rem {{ buttonConfig.icon }} icon-{{
+      this.buttonConfig.size
+    }}"
+  >
+  </i>
+  }
+
+  <!-- Icon Only -->
+  @if(buttonConfig.icon && buttonConfig.iconPosition === 'only' && !loading &&
+  !buttonConfig.loading){
+  <i class="ank-m-0 {{ buttonConfig.icon }} icon-{{ this.buttonConfig.size }}">
+  </i>
+  }
+
+  <!-- Pulse Animation Overlay -->
+  @if(buttonConfig.pulse){
+  <span class="pulse-overlay"> </span>
+  }
+</button>
